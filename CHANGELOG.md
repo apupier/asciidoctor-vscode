@@ -5,6 +5,7 @@
 ### Improvements
 
 - provide folding for list of sibling attributes by @apupier (#719)
+- provide inlay hints for attribute values (#729)
 
 ### Bug fixes
 

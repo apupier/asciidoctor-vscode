@@ -21,6 +21,7 @@ import { BuiltinDocumentAttributeProvider } from './features/builtinDocumentAttr
 import AsciidocFoldingRangeProvider from './features/foldingProvider'
 import { AntoraSupportManager } from './features/antora/antoraSupport'
 import { DropImageIntoEditorProvider } from './features/dropIntoEditor'
+import { AttributeInlayHintProvider } from './features/attributeInlayHintProvider'
 
 export async function activate (context: vscode.ExtensionContext) {
   // Set context as a global as some tests depend on it
@@ -62,6 +63,7 @@ export async function activate (context: vscode.ExtensionContext) {
   context.subscriptions.push(vscode.languages.registerCompletionItemProvider(selector, new BuiltinDocumentAttributeProvider(), ':'))
   context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(selector, new AsciidocFoldingRangeProvider()))
   context.subscriptions.push(vscode.languages.registerDocumentDropEditProvider(selector, new DropImageIntoEditorProvider()))
+  context.subscriptions.push(vscode.languages.registerInlayHintsProvider(selector, new AttributeInlayHintProvider()))
   const previewSecuritySelector = new PreviewSecuritySelector(cspArbiter, previewManager)
   const commandManager = new CommandManager()
   context.subscriptions.push(commandManager)
